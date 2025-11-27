@@ -196,11 +196,11 @@ resource "aws_wafv2_web_acl" "main" {
                             sensitivity     = try(challenge.value.sensitivity, "HIGH")
                             usage_of_action = try(challenge.value.usage_of_action, null)
 
-                            dynamic "exempt_uri_regular_expressions" {
-                              for_each = try(challenge.value.exempt_uri_regular_expressions, [])
+                            dynamic "exempt_uri_regular_expression" {
+                              for_each = try(challenge.value.exempt_uri_regular_expression, [])
 
                               content {
-                                regex_string = try(exempt_uri_regular_expressions.value.regex_string, null)
+                                regex_string = try(exempt_uri_regular_expression.value.regex_string, null)
                               }
                             }
                           }
